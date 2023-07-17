@@ -251,7 +251,7 @@ def get_word_count(soup):
 #    list_most_common_words = total.most_common()
 
 
-def crawl(url, max_urls=3):
+def crawl(url, max_urls=100):
     """
     Crawls a web page and extracts all links.
     You'll find all links in `external_urls` and `internal_urls` global set variables.
