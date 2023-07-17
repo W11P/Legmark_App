@@ -9,7 +9,7 @@ import matplotlib.pyplot as plt
 import time
 from PIL import Image
 
-image = Image.open('C:\\Users\\wil\\PycharmProjects\\pythonProject1\\pythonProject\\Legmark_app\\venv\\legmark_logo.png')
+image = Image.open('https://github.com/W11P/Legmark_App/blob/a17015c75da609d2be579d8052ba518001a4aff2/legmark_logo.png')
 st.image(image)
 
 
