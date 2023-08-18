@@ -69,7 +69,7 @@ if key_words != "":
 
     # We found the domain we are looking for
     if(found == True):
-        st.write("Found at position", position)
+        st.write("Found at position", position+1)
 
     # We did not find the domain we are looking for
     else:
