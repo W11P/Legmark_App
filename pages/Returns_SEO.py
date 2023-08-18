@@ -96,14 +96,14 @@ key_word =st.text_input('Keyword:')
 site_position=[]
 lenth =[]
 
-if st.button('Find Website ranking'):
+if st.button('Website Ranking'):
    st.session_state.site_ranking = website_keyword(key_word)
 
 if "site_ranking" in st.session_state and st.session_state.site_ranking != 0:
     st.write('Found At Position:', st.session_state.site_ranking)
     position = st.slider('Site Ranking',value =st.session_state.site_ranking,min_value=0,max_value=10,step=1)
 
-if st.button('Find Key Word Searchs'):
+if st.button('Key Word Searches'):
     iot_total_sum = keyword_ranking(key_word)
     st.session_state.iot_tot = iot_total_sum
 if "iot_tot" in st.session_state and st.session_state.iot_tot != 0:
@@ -117,7 +117,7 @@ web_rate =st.number_input('Website Conversation % Rate?',min_value=0, max_value=
 int_rate =st.slider('Internal Conversation % Rate?',value=10,min_value=0,max_value=100,step=1)
 ave_cost_rate =st.number_input('Average Cost of Case',min_value=0,value = 1000,step=100)
 
-if st.button('Calculate Returs'):
+if st.button('Calculate Returns'):
     if position <= 10 and position !=0:
         CTR_P = (0.398, 0.187, 0.102, 0.074, 0.051, 0.045, 0.034, 0.026, 0.024, 0.022)
         for i, value in enumerate(CTR_P):
