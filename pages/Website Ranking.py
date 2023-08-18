@@ -46,8 +46,8 @@ if key_words != "":
         #
         st.write(results[result].prettify())
         # Parse each url and look for the class yuRUbf to make get the correct URL
-        #web_site=results[result].find(class_='apx8Vc qLRx3b tjvcx GvPZzd cHaqb').get_text
-        #print(web_site)
+        web_site=results[result].find(class_='qLRx3b tjvcx GvPZzd cHaqb').text
+        st.wite(web_site)
         try:
             link= urlparse(results[result].find('a').get('href')).netloc
             #st.write(link)
