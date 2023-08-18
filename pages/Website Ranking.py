@@ -56,7 +56,7 @@ if key_words != "":
         #if link is not None or link != " " or link != "" or len(link)==0:
         if len(link)!=0:
             link = remove_www(link)
-            print(link)
+           # print(link)
             site_position.append(link)
             lenth.append(len(link))
             if(link == search_for_domain):
