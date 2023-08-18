@@ -305,10 +305,10 @@ if __name__ == "__main__":
         bar.progress(i + 1)
         time.sleep(0.1)
     bar.empty()
-    print(len(url_crawled),len(titles),len(title_length),len(page_status),len(meta_desc),len(meta_desc_words),len(meta_desc_length),len(number_words_on_page),len(h1_1))
-    print(len(h1_1_letters),len(h1_1_word),len(numb_external_links),len(numb_internal_links))
-    print(url_crawled)
-    print(titles)
+   # print(len(url_crawled),len(titles),len(title_length),len(page_status),len(meta_desc),len(meta_desc_words),len(meta_desc_length),len(number_words_on_page),len(h1_1))
+   # print(len(h1_1_letters),len(h1_1_word),len(numb_external_links),len(numb_internal_links))
+   # print(url_crawled)
+   # print(titles)
 
     scrape_table = pd.DataFrame({
         'Page': url_crawled,
