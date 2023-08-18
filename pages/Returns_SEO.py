@@ -51,7 +51,7 @@ def website_keyword(key_word):
                 lenth.append(len(link))
                 if(link == search_for_domain):
                     found = True
-                    position = result
+                    position = result+1
 
                     break;
                 else:
