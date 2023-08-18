@@ -8,8 +8,8 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import time
 from PIL import Image
-#image = Image.open('./legmark_logo.png')
-image = Image.open('C:\\Users\\wil\\PycharmProjects\\pythonProject1\\pythonProject\\Legmark_app\\venv\\legmark_logo.png')
+image = Image.open('./legmark_logo.png')
+#image = Image.open('C:\\Users\\wil\\PycharmProjects\\pythonProject1\\pythonProject\\Legmark_app\\venv\\legmark_logo.png')
 st.image(image)
 
 
