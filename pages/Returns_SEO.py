@@ -86,8 +86,8 @@ def keyword_ranking(keyword):
 
     st.write('The number of times the keyword {} has been searched each month is:'.format(key_word),iot_total_sum)
     return iot_total_sum
+image = Image.open('./legmark_logo.png')
 
-image = Image.open('C:\\Users\\wil\\PycharmProjects\\pythonProject1\\pythonProject\\Legmark_app\\venv\\legmark_logo.png')
 st.image(image)
 
 search_for_domain = st.text_input('Website name: (e.g. Legmark.com)') #"legmark.com"
