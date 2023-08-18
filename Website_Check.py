@@ -8,8 +8,8 @@ from wordcloud import WordCloud, STOPWORDS
 import matplotlib.pyplot as plt
 import time
 from PIL import Image
-
-image = Image.open('./legmark_logo.png')
+#image = Image.open('./legmark_logo.png')
+image = Image.open('C:\\Users\\wil\\PycharmProjects\\pythonProject1\\pythonProject\\Legmark_app\\venv\\legmark_logo.png')
 st.image(image)
 
 
@@ -147,16 +147,19 @@ def get_title(soup):   # domain name of the URL without the protocol
     """
     word count needs to be between 50-60 characters long. use target key work and brand name if space
     """
-
+    count_title = 0
     for title in soup.find_all('title'):
-        if title == "" and title == None:
-            continue
-        title_text = title.get_text()
-        title_urls.add(title_text)
-        #print(f'Tile -> {title_text}')
-        titles.append(title_text)
-        letters_in_title = len(title_text)-title_text.count(" ")
-        title_length.append(letters_in_title)
+        if count_title ==0:
+            count_title +=1
+            if title == "" and title == None:
+                #titles.append('no title')
+                continue
+            title_text = title.get_text()
+            title_urls.add(title_text)
+            #print(f'Tile -> {title_text}')
+            titles.append(title_text)
+            letters_in_title = len(title_text)#-title_text.count(" ")
+            title_length.append(letters_in_title)
 
 
 def get_heading_tags(soup):
@@ -171,7 +174,7 @@ def get_heading_tags(soup):
             break
         tags_text = tags.get_text()
         words_tags = len(tags_text.split())
-        letters_in_tags = len(tags_text) - tags_text.count(" ")
+        letters_in_tags = len(tags_text) #- tags_text.count(" ")
         heading_word_count = heading_word_count + letters_in_tags
         if i == 0:
             h1_1.append(tags_text)
@@ -214,12 +217,17 @@ def get_meta_description(soup):
     meta_description = soup.find('meta', attrs={'name': 'description'})
     try:
         meta_text =meta_description['content'] if meta_description else "No meta description"
-        meta_text_letters = len(meta_text) - meta_text.count(" ")
-        meta_word = len(meta_text.split())
         meta_desc.append(meta_text)
+        if meta_text == "No meta description":
+            meta_text=""
+        meta_text_letters = len(meta_text)# - meta_text.count(" ")
+        meta_word = len(meta_text.split())
+
         meta_desc_words.append(meta_word)
         meta_desc_length.append(meta_text_letters)
-
+        #else:
+        #    meta_desc.append('0')
+        #    meta_desc_length.append('0')
     except(AttributeError, KeyError) as er:
         meta_desc.append('No Meta description')
         meta_desc_words.append('0')
@@ -279,7 +287,9 @@ def highlight_cells_tl(val, color_if_true, color_if_false):
 def highlight_cells_md(val, color_if_true, color_if_false):
     color = color_if_true if val <= 100 or val >= 160 else color_if_false
     return 'background-color: {}'.format(color)
-
+def highlight_cells_st(val, color_if_true, color_if_false):
+    color = color_if_true if val != 200 else color_if_false
+    return 'background-color: {}'.format(color)
 
 if __name__ == "__main__":
 
@@ -295,6 +305,11 @@ if __name__ == "__main__":
         bar.progress(i + 1)
         time.sleep(0.1)
     bar.empty()
+    print(len(url_crawled),len(titles),len(title_length),len(page_status),len(meta_desc),len(meta_desc_words),len(meta_desc_length),len(number_words_on_page),len(h1_1))
+    print(len(h1_1_letters),len(h1_1_word),len(numb_external_links),len(numb_internal_links))
+    print(url_crawled)
+    print(titles)
+
     scrape_table = pd.DataFrame({
         'Page': url_crawled,
         'Title': titles,
@@ -322,15 +337,18 @@ if __name__ == "__main__":
 #        'Error Links on Page': error_links,
 #        'None Scrapable links': none_webpage_links,
     })
-
-    st.dataframe(scrape_table.style.applymap(highlight_cells_tl, color_if_true='red', color_if_false='',subset=['Title Length'])\
-                 .applymap(highlight_cells_md, color_if_true='red', color_if_false='',subset=['Meta Length']))
+    try:
+        st.dataframe(scrape_table.style.applymap(highlight_cells_tl, color_if_true='red', color_if_false='',subset=['Title Length'])\
+                 .applymap(highlight_cells_md, color_if_true='red', color_if_false='',subset=['Meta Length']) \
+                     .applymap(highlight_cells_st, color_if_true='red', color_if_false='#90EE90'
+                                                                                       '', subset=['Page Status']) )
 
 
     #st.dataframe(scrape_table)
 
-    st.write("Total Links Followed:", (total_urls_visited))
-    st.write("Total Internal links:", len(internal_urls))
-    st.write("Total External links:", len(external_urls))
-    st.write("Total URLs:", len(external_urls) + len(internal_urls))
-
+        st.write("Total Links Followed:", (total_urls_visited))
+        st.write("Total Internal links:", len(internal_urls))
+        st.write("Total External links:", len(external_urls))
+        st.write("Total URLs:", len(external_urls) + len(internal_urls))
+    except(AttributeError, KeyError) as er:
+        st.write("Sorry Error")
