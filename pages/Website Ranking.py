@@ -44,7 +44,7 @@ if key_words != "":
     position = 0
     for result in range(0, len(results)):
         #
-        #print(results[result].prettify())
+        #st.write(results[result].prettify())
         # Parse each url and look for the class yuRUbf to make get the correct URL
         #web_site=results[result].find(class_='apx8Vc qLRx3b tjvcx GvPZzd cHaqb').get_text
         #print(web_site)
@@ -56,12 +56,12 @@ if key_words != "":
         #if link is not None or link != " " or link != "" or len(link)==0:
         if len(link)!=0:
             link = remove_www(link)
-           # print(link)
+            #print(link)
             site_position.append(link)
             lenth.append(len(link))
             if(link == search_for_domain):
                 found = True
-                position = result
+                position = result+1
 
                 break;
             else:
@@ -69,7 +69,7 @@ if key_words != "":
 
     # We found the domain we are looking for
     if(found == True):
-        st.write("Found at position", position+1)
+        st.write("Found at position", position)
 
     # We did not find the domain we are looking for
     else:
