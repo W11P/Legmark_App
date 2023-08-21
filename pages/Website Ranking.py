@@ -40,33 +40,45 @@ if key_words != "":
     # Extract all search results by looking up the first class
     results = soup.find_all("div", class_="MjjYud")
 
-
+    #st.write(results)
     position = 0
-    for result in range(0, len(results)):
-        #
+    for result in range(0,len(results)):
+
         #st.write(results[result].prettify())
         # Parse each url and look for the class yuRUbf to make get the correct URL
-        web_site=results[result].find(class_='qLRx3b tjvcx GvPZzd cHaqb').text
-        st.write(web_site)
+        try:
+            web_site=results[result].find(class_='qLRx3b tjvcx GvPZzd cHaqb').text
+        #    st.write(result, web_site)
+        except:
+        #    st.title(result,"not here")
+            pass
+
         try:
             link= urlparse(results[result].find('a').get('href')).netloc
             #st.write(link)
+            #st.write(len(link))
+            if len(link)==0:
+               # st.write('pick it up')
+                pass
+        #except:
+        #    pass
+        #if link is not None or link != " " or link != "" or len(link)==0:
+            else:# len(link)!=0 or link is not None or link !="" or link !=" ":
+                st.write(len(link))
+                link = remove_www(link)
+                #print(link)
+                site_position.append(link)
+                lenth.append(len(link))
+                #st.write(link)
+                if(link == search_for_domain):
+                    found = True
+                    position = result
+
+                    break;
+                else:
+                    found = False
         except:
             pass
-        #if link is not None or link != " " or link != "" or len(link)==0:
-        if len(link)!=0:
-            link = remove_www(link)
-            #print(link)
-            site_position.append(link)
-            lenth.append(len(link))
-            if(link == search_for_domain):
-                found = True
-                position = result+1
-
-                break;
-            else:
-                found = False
-
     # We found the domain we are looking for
     if(found == True):
         st.write("Found at position", position)
