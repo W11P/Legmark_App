@@ -8,9 +8,9 @@ from pytrends.request import TrendReq
 #   pytrends = TrendReq(hl='en-US', tz=360)
 
 requests_args = {
-    'headers': {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36'
-    }
+    'headers':  {
+    'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36'
+}
 }
 
 # Only need to run this once, the rest of requests will use the same session.
