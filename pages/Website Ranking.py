@@ -32,22 +32,16 @@ if key_words != "":
     # Parse response into Beautiful Soup
     soup = BeautifulSoup(response.text,'html.parser')
   
-    st.write(soup.prettify())
+
     # Extract all search results by looking up the first class
     results = soup.find_all("div", class_="MjjYud")
-    #st.write(results)
+
    
     position = 0
     for result in range(0,len(results)):
 
         # Parse each url and look for the class yuRUbf to make get the correct URL
-        try:
 
-            web_site = results[result].find(class_='VuuXrf').text
-            st.write(web_site)
-        except:
-
-            pass
 
         try:
             link= urlparse(results[result].find('a').get('href')).netloc
