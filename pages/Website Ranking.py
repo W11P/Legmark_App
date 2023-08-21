@@ -24,7 +24,7 @@ if key_words != "":
         else:
             new_key_word += space
 
-    target_url='https://www.google.co.uk/search?q='+new_key_word+'&num=100'
+    target_url='https://www.google.co.uk/search?q='+new_key_word+'&num=20'
     st.write(target_url)
 
     response = requests.get(target_url, headers=headers)
