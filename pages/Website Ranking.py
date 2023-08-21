@@ -31,10 +31,11 @@ if key_words != "":
 
     # Parse response into Beautiful Soup
     soup = BeautifulSoup(response.text,'html.parser')
-
+    soup.prettify()
+    st.write(soup)
     # Extract all search results by looking up the first class
     results = soup.find_all("div", class_="MjjYud")
-    st.write(results)
+    #st.write(results)
    
     position = 0
     for result in range(0,len(results)):
