@@ -34,7 +34,7 @@ if key_words != "":
 
     # Extract all search results by looking up the first class
     results = soup.find_all("div", class_="MjjYud")
-
+    st.write(results)
    
     position = 0
     for result in range(0,len(results)):
