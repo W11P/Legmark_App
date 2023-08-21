@@ -31,8 +31,8 @@ if key_words != "":
 
     # Parse response into Beautiful Soup
     soup = BeautifulSoup(response.text,'html.parser')
-    soup.prettify()
-    st.write(soup)
+  
+    st.write(soup.prettify())
     # Extract all search results by looking up the first class
     results = soup.find_all("div", class_="MjjYud")
     #st.write(results)
