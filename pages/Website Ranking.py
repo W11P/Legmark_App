@@ -9,7 +9,7 @@ def remove_www(text):
   return re.sub(r"www\.(\w+)", r"\1", text)
 
 site_position=[]
-#lenth =[]
+
 headers={'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36','referer':'https://www.google.co.uk'}
 
 search_for_domain = st.text_input('Website name: (e.g. Legmark.com)') #"legmark.com"
@@ -31,7 +31,6 @@ if key_words != "":
     soup = BeautifulSoup(response.text,'html.parser')
     results = soup.find_all("div", class_="MjjYud")
 
-    #position = 0
     for result in range(0,len(results)):
 
         try:
@@ -42,11 +41,11 @@ if key_words != "":
              
                 link = remove_www(link)   
                 site_position.append(link)
-                #lenth.append(len(link))
+   
            
                 if(link == search_for_domain):
                     found = True
-                    #position = result
+
 
                     break;
                 else:
