@@ -80,7 +80,7 @@ def keyword_ranking(keyword):
     for value in iot[key_word]:
         iot_total_sum += value
 
-    st.write('The number of times the keyword {} has been searched each month is:'.format(key_word),iot_total_sum)
+   
     return iot_total_sum
 image = Image.open('./legmark_logo.png')
 
@@ -103,7 +103,8 @@ if st.button('Key Word Searches'):
     iot_total_sum = keyword_ranking(key_word)
     st.session_state.iot_tot = iot_total_sum
 if "iot_tot" in st.session_state and st.session_state.iot_tot != 0:
-    pass
+    
+    st.write('The number of times the keyword {} has been searched each month is:'.format(key_word), st.session_state.iot_tot )
 
 
 web_rate =st.number_input('Website Conversation % Rate?',min_value=0, max_value=100,value = 5, step=1)
