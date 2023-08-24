@@ -32,8 +32,8 @@ def website_keyword(key_word):
                 new_key_word += "+"
             else:
                 new_key_word += space
-        target_url='https://www.google.co.uk/search?q='+new_key_word+'&num=100'
-        #st.write(target_url)
+        target_url='https://www.google.co.uk/search?q='+new_key_word+'&num=20'
+
         response = requests.get(target_url, headers=headers)
         soup = BeautifulSoup(response.text,'html.parser')
         results = soup.find_all("div", class_="MjjYud")
@@ -46,23 +46,19 @@ def website_keyword(key_word):
                 pass
             if len(link)!=0:
                 link = remove_www(link)
-                print(link)
                 site_position.append(link)
-                lenth.append(len(link))
                 if(link == search_for_domain):
                     found = True
-                    position = result+1
 
                     break;
                 else:
                     found = False
+        df=pd.DataFrame({'Website Ranking':site_position})
         if(found == True):
-            pass
-            #st.write("Found at position", position)
+            position = len(df['Website Ranking'])
+            st.dataframe(df)
         else:
             st.write("Not found in top", len(results))
-
-        df=pd.DataFrame({'Website Ranking':site_position})
         return position
 def keyword_ranking(keyword):
     requests_args = {
@@ -108,9 +104,6 @@ if st.button('Key Word Searches'):
     st.session_state.iot_tot = iot_total_sum
 if "iot_tot" in st.session_state and st.session_state.iot_tot != 0:
     pass
-    #st.write('The number of times the keyword {} has been searched each month is:'.format(key_word), st.session_state.iot_tot )
-
-#click_rate = st.slider('Click Through Rate',value =50,min_value=0,max_value= st.session_state.iot_tot,step=1)
 
 
 web_rate =st.number_input('Website Conversation % Rate?',min_value=0, max_value=100,value = 5, step=1)
@@ -133,10 +126,6 @@ if st.button('Calculate Returns'):
     d=ave_cost_rate
     st.write(f'Current Income=£{int(formula_lg(CTR,b,c,d))} per month')
     st.write(f'Potential Income=£ {int(formula_lg(CTR_potential,b,c,d))} per month if ranking at number 1')
-
-
-
-
 
 if st.button("reset"):
     for key in session_state.keys():
